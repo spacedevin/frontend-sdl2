@@ -129,3 +129,13 @@ jobs:
           cmake -G Ninja -S "${{ github.workspace }}/frontend-sdl2" -B "${{ github.workspace }}/cmake-build-frontend-sdl2" -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="${{ github.workspace }}/install-libprojectm" -DCMAKE_INSTALL_PREFIX="${{ github.workspace }}//install-frontend-sdl2"
           cmake --build "${{ github.workspace }}/cmake-build-frontend-sdl2" --parallel
 #          cmake --install "${{ github.workspace }}/cmake-build-frontend-sdl2"
+
+      - name: Install projectMSDL
+        run: |
+          cmake --install "${{ github.workspace }}/cmake-build-frontend-sdl2"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-sdl2-latest
+          path: install/*
