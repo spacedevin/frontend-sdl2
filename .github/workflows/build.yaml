@@ -132,9 +132,9 @@ jobs:
 
       - name: Install projectMSDL
         run: |
-          ls "${{ github.workspace }}
-          ls ${{ github.workspace }}/cmake-build-frontend-sdl2
-          ls ${{ github.workspace }}/cmake-build-frontend-sdl2/src
+          ls "${{ github.workspace }}"
+          ls "${{ github.workspace }}/cmake-build-frontend-sdl2"
+          ls "${{ github.workspace }}/cmake-build-frontend-sdl2/src"
 
           mkdir "${{ github.workspace }}/dist"
           mv "${{ github.workspace }}/cmake-build-frontend-sdl2/src/projectMSDL" "${{ github.workspace }}/dist/projectMSDL"
