@@ -97,7 +97,7 @@ jobs:
 
   build-darwin:
     name: macOS, x86_64
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
       - name: Install Build Dependencies
