@@ -97,11 +97,13 @@ jobs:
 
   build-darwin:
     name: macOS, x86_64
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
       - name: Install Build Dependencies
-        run: brew install sdl2 ninja googletest poco
+        run: |
+          brew update
+          brew install sdl2 ninja googletest poco
 
       - name: Checkout libprojectM Sources
         uses: actions/checkout@v3
@@ -129,3 +131,15 @@ jobs:
           cmake -G Ninja -S "${{ github.workspace }}/frontend-sdl2" -B "${{ github.workspace }}/cmake-build-frontend-sdl2" -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="${{ github.workspace }}/install-libprojectm" -DCMAKE_INSTALL_PREFIX="${{ github.workspace }}//install-frontend-sdl2"
           cmake --build "${{ github.workspace }}/cmake-build-frontend-sdl2" --parallel
 #          cmake --install "${{ github.workspace }}/cmake-build-frontend-sdl2"
+
+      - name: Install projectMSDL
+        run: |
+          mv "${{ github.workspace }}/cmake-build-frontend-sdl2/src" "${{ github.workspace }}/dist"
+        # mkdir "${{ github.workspace }}/dist"
+        # mv "${{ github.workspace }}/cmake-build-frontend-sdl2/src/projectMSDL" "${{ github.workspace }}/dist/projectMSDL"
+        # mv "${{ github.workspace }}/cmake-build-frontend-sdl2/src/projectMSDL.properties" "${{ github.workspace }}/dist/projectMSDL.properties"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-sdl2-latest
+          path: dist/*

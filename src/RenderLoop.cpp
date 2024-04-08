@@ -296,6 +296,10 @@ void RenderLoop::PresetSwitchedEvent(bool isHardCut, unsigned int index, void* c
 void RenderLoop::UpdateWindowTitle()
 {
     auto presetName = projectm_playlist_item(_playlistHandle, projectm_playlist_get_position(_playlistHandle));
+    if (presetName == nullptr)
+    {
+        return;
+    }
 
     Poco::Path presetFile(presetName);
     projectm_playlist_free_string(presetName);
