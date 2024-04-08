@@ -133,8 +133,8 @@ jobs:
       - name: Install projectMSDL
         run: |
           mkdir dist
-          cp "${{ github.workspace }}/cmake-build-frontend-sdl2/frontend-sdl2/projectMSDL" "${{ github.workspace }}/cmake-build-frontend-sdl2/frontend-sdl2/dist/projectMSDL"
-          cp "${{ github.workspace }}/cmake-build-frontend-sdl2/frontend-sdl2/projectMSDL.properties" "${{ github.workspace }}/cmake-build-frontend-sdl2/frontend-sdl2/dist/projectMSDL.properties"
+          mv "${{ github.workspace }}/cmake-build-frontend-sdl2/projectMSDL" "${{ github.workspace }}/cmake-build-frontend-sdl2/dist/projectMSDL"
+          mv "${{ github.workspace }}/cmake-build-frontend-sdl2/projectMSDL.properties" "${{ github.workspace }}/cmake-build-frontend-sdl2/dist/projectMSDL.properties"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
