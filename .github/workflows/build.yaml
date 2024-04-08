@@ -101,7 +101,9 @@ jobs:
 
     steps:
       - name: Install Build Dependencies
-        run: brew install sdl2 ninja googletest poco
+        run: |
+          brew update
+          brew install sdl2 ninja googletest poco
 
       - name: Checkout libprojectM Sources
         uses: actions/checkout@v3
